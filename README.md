@@ -42,7 +42,7 @@ Each dataset also contains the ground truths either in mat files, txt files or i
 1. Download the desired data and put the training images in '…\datasets\trainK' folder (where K indicates the iteration).
 2. The directory structure is given below:
 ```
-├── dataset
+├── datasets
 │   ├── test
 │   │   └── test_image_1.png
 │   │   └── test_image_2.png
