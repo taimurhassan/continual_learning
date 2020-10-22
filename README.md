@@ -72,7 +72,7 @@ Each dataset also contains the ground truths either in mat files, txt files or i
 3. Use ‘confusionMatrix.m’ to view the obtained results. 
 
 ## Results
-The detailed results of the proposed scheme on all the above-mentioned datasets using all the four pre-trained models (which we used in this study) are stored in the mat file within the '…\results' folder. 
+The detailed results of the proposed scheme on all the above-mentioned datasets using all the four pre-trained models (which we used in this study) are stored in the 'results.mat' file. 
 
 ## Citation
 If you use the proposed scheme (or any part of this code in your research), please cite the following paper:
