@@ -23,7 +23,7 @@ import keras.backend as K
 
 doTraining = True
 numClasses = 2
-class_names = ['normal','pneumonia']
+class_names = ['normal','ci-DME']
 numIterations = 2
 
 def mutualDistillationLoss(yTrue, yPred, oldClasses):
