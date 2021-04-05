@@ -7,9 +7,9 @@ This repository contains an implementation of the continual learning loss functi
 
 ## Installation
 To run the codebase, please download and install Anaconda (also install MATLAB R2020a with deep learning, image processing and computer vision toolboxes). Afterward, please import the ‘environment.yml’ or alternatively install following packages: 
-1. Python 3.7.4 
-2. TensorFlow 1.14 (CUDA compatible GPU needed for GPU training) 
-3. Keras 2.0.0 or above 
+1. Python 3.7.9 
+2. TensorFlow 2.1.0 (CUDA compatible GPU needed for GPU training) 
+3. Keras 2.3.0 or above 
 4. OpenCV 4.2 
 5. Imgaug 0.2.9 or above 
 6. Tqdm 
