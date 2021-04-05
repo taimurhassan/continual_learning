@@ -21,7 +21,7 @@ Both Linux and Windows OS are supported.
 The datasets used in the paper can be downloaded from the following URLs: 
 
 1. [Rabbani](https://sites.google.com/site/hosseinrabbanikhorasgani/datasets-1)
-2. [BIOMISA](http://biomisa.org/index.php/downloads/)
+2. [BIOMISA](https://data.mendeley.com/datasets/trghs22fpg/3)
 3. [Zhang](https://data.mendeley.com/datasets/rscbjbr9sj/3)
 4. [Duke-I](http://people.duke.edu/~sf59/RPEDC_Ophth_2013_dataset.htm)
 5. [Duke-II](http://people.duke.edu/~sf59/Chiu_BOE_2014_dataset.htm)
