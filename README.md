@@ -1,9 +1,9 @@
-# Medical Domain Adaptation from Security X-ray Scans via Bayesian Incremental Learning
+# Cross-Domain Adaptation for Robust Retinopathy Screening via Bayesian Incremental Learning
 
 ## Introduction
 This repository contains an implementation of the continual learning loss function (driven via Bayesian inference) to penalize the deep classification networks for incrementally learning the diverse ranging classification tasks across various domain shifts.
 
-![CL](/images/BD.jpg)
+![CL](/images/BD2.png)
 
 ## Installation
 To run the codebase, please download and install Anaconda (also install MATLAB R2020a with deep learning, image processing and computer vision toolboxes). Afterward, please import the ‘environment.yml’ or alternatively install following packages: 
@@ -20,17 +20,9 @@ Both Linux and Windows OS are supported.
 ## Datasets
 The datasets used in the paper can be downloaded from the following URLs: 
 
-Source Domain:
-1. [GDXray](https://domingomery.ing.puc.cl/material/gdxray/) 
-2. [SIXray](https://github.com/MeioJane/SIXray) 
-
-Target Domain-I:
-1. [Zhang CXR](https://data.mendeley.com/datasets/rscbjbr9sj/3)
-
-Target Domain-II:
 1. [Rabbani](https://sites.google.com/site/hosseinrabbanikhorasgani/datasets-1)
 2. [BIOMISA](http://biomisa.org/index.php/downloads/)
-3. [Zhang OCT](https://data.mendeley.com/datasets/rscbjbr9sj/3)
+3. [Zhang](https://data.mendeley.com/datasets/rscbjbr9sj/3)
 4. [Duke-I](http://people.duke.edu/~sf59/RPEDC_Ophth_2013_dataset.htm)
 5. [Duke-II](http://people.duke.edu/~sf59/Chiu_BOE_2014_dataset.htm)
 6. [Duke-III](http://people.duke.edu/~sf59/Srinivasan_BOE_2014_dataset.htm)
@@ -72,17 +64,17 @@ Each dataset also contains the ground truths either in mat files, txt files or i
 3. Use ‘confusionMatrix.m’ to view the obtained results. 
 
 ## Results
-The detailed results of the proposed scheme on all the above-mentioned datasets using all the four pre-trained models (which we used in this study) are stored in the 'results.mat' file. 
+The detailed results of the proposed framework on all the above-mentioned datasets are stored in the 'results.mat' file. 
 
 ## Citation
 If you use the proposed scheme (or any part of this code in your research), please cite the following paper:
 
 ```
-@inproceedings{BayesianIL,
-  title   = {Medical Domain Adaptation from Security X-ray Scans via Bayesian Incremental Learning},
-  author  = {Taimur Hassan and Muhammad Usman Akram and Naoufel Werghi},
-  note = {Submitted in Elsevier Knowledge-Based Systems},
-  year = {2020}
+@inproceedings{BayesianIDA,
+  title   = {Cross-Domain Adaptation for Robust Retinopathy Screening via Bayesian Incremental Learning},
+  author  = {Taimur Hassan and Bilal Hassan and Muhammad Usman Akram and Shahrukh Hashmi and Abdul Hakeem and Naoufel Werghi},
+  note = {Submitted in IEEE Journal of Biomedical and Health Informatics},
+  year = {2021}
 }
 ```
 
