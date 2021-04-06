@@ -22,9 +22,10 @@ from keras import optimizers
 import keras.backend as K
 
 doTraining = True
-numClasses = 2
-class_names = ['normal','ci-DME']
-numIterations = 2
+numClasses = 5
+class_names = ['normal','DME','CNV','DRUSEN','CSR']
+numIterations = numClasses
+adaptationIteration = 0
 
 def mutualDistillationLoss(yTrue, yPred, oldClasses):
     yOldP = yPred[:,:oldClasses]
@@ -59,7 +60,10 @@ def mutualDistillationLoss(yTrue, yPred, oldClasses):
     
     return K.categorical_crossentropy(yOldT,yOldNewP) + K.categorical_crossentropy(yNewT,yNewP)
     
-def incrementalLearningLoss(yTrue,yPred, iteration, oldClasses,temperature):
+def continualLearningLoss(yTrue,yPred, iteration, oldClasses,temperature):
+    a = 0.25
+    b = 0.45
+    c = 0.30
     if iteration == 0:
         return K.categorical_crossentropy(yTrue,yPred,from_logits=True)
     else:
@@ -68,15 +72,15 @@ def incrementalLearningLoss(yTrue,yPred, iteration, oldClasses,temperature):
         yNewP = yPred[:,oldClasses:]/temperature
         yNewT = yTrue[:,oldClasses:]/temperature
         
-        return K.categorical_crossentropy(yNewT,yNewP) + mutualDistillationLoss(yTrue, yPred, oldClasses) + keras.losses.kullback_leibler_divergence(yNewT,yNewP)
+        return (a * K.categorical_crossentropy(yNewT,yNewP)) + (b * mutualDistillationLoss(yTrue, yPred, oldClasses)) + (c * keras.losses.kullback_leibler_divergence(yNewT,yNewP))
         
 if doTraining == True:
-    
-    c = 1 # classes to add
+    c = 0 # classes to add
     for i in range(0,numIterations):
     
         trainingPath = "./datasets/train" + str(i + 1) + "/"
-        if i is 0:
+        if i == 0 or i == adaptationIteration:
+            c = c + 2 # 2 classes are added in the start, and at the adaptation stage
             base_model=MobileNet(weights='imagenet',include_top=False) 
 
             x=base_model.output
@@ -87,6 +91,7 @@ if doTraining == True:
             preds=Dense(c,activation='softmax')(x) 
             model=Model(inputs=base_model.input,outputs=preds)
         else:
+            c = c + 1
             print(c)
             model.layers.pop()
             preds=Dense(c,activation='softmax')(model.layers[-1].output) 
@@ -101,46 +106,27 @@ if doTraining == True:
                                                          class_mode='categorical',
                                                          shuffle=True)
 
-        temperature = 2.
+        temperature = 1.65
         #sgd = optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 
-        model.compile(optimizer='adadelta',loss=lambda yTrue, yPred: incrementalLearningLoss(yTrue, yPred, i, c, temperature),metrics=['accuracy'])
+        model.compile(optimizer='adadelta',loss=lambda yTrue, yPred: continualLearningLoss(yTrue, yPred, i, c, temperature),metrics=['accuracy'])
 
         step_size_train=train_generator.n//train_generator.batch_size
         fit_history = model.fit_generator(generator=train_generator,
                            steps_per_epoch=step_size_train,
                            epochs=20)
-            
+
         
-#        plt.subplot(121)  
-#        plt.plot(fit_history.history['acc'])  
-        #plt.plot(fit_history.history['val_acc'])  
-#        plt.title('model accuracy')  
-#        plt.ylabel('accuracy')  
-#        plt.xlabel('epoch')  
-        #plt.legend(['train', 'valid']) 
-            
-#        plt.subplot(122)  
-#        plt.plot(fit_history.history['loss'])  
-        #plt.plot(fit_history.history['val_loss'])  
-#        plt.title('model loss')  
-#        plt.ylabel('loss')  
-#        plt.xlabel('epoch')  
-        #plt.legend(['train', 'valid']) 
-
-#        plt.show()
-
-        c = c + 1
         model.save("model" + str(i + 1) + ".h5")
 
 
-    
-model=load_model("model2.h5",custom_objects = {'<lambda>': lambda y_true, y_pred: y_pred})
-image = load_img('test.jpg', target_size=(224, 224))
-image = img_to_array(image)
-image = image.reshape((1, image.shape[0], image.shape[1], image.shape[2]))
-image = preprocess_input(image)
-yhat = model.predict(image)
-print(yhat)
-index = np.argmax(yhat)
-print(class_names[index])
+#model_name = "model2.h5"    
+#model=load_model(model_name,custom_objects = {'<lambda>': lambda y_true, y_pred: y_pred})
+#image = load_img('test.jpg', target_size=(224, 224))
+#image = img_to_array(image)
+#image = image.reshape((1, image.shape[0], image.shape[1], image.shape[2]))
+#image = preprocess_input(image)
+#yhat = model.predict(image)
+#print(yhat)
+#index = np.argmax(yhat)
+#print(class_names[index])
