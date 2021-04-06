@@ -28,7 +28,7 @@ The datasets used in the paper can be downloaded from the following URLs:
 5. [Duke-II](http://people.duke.edu/~sf59/Chiu_BOE_2014_dataset.htm)
 6. [Duke-III](http://people.duke.edu/~sf59/Srinivasan_BOE_2014_dataset.htm)
 
-Each dataset also contains the ground truths either in mat files, txt files or in xml files. Moreover, please follow the same steps as mentioned below to prepare the training and testing data. These steps are also applicable for any custom dataset.
+The datasets description file is also uploaded here. Moreover, please follow the same steps as mentioned below to prepare the training and testing data. These steps are also applicable for any custom dataset.
 
 ## Dataset Preparation
 
