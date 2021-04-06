@@ -27,38 +27,33 @@ class_names = ['normal','DME','CNV','DRUSEN','CSR']
 numIterations = numClasses
 adaptationIteration = 0
 
-def mutualDistillationLoss(yTrue, yPred, oldClasses):
+def mutualDistillationLoss(yTrue, yPred, oldClasses, newClasses):
     yOldP = yPred[:,:oldClasses]
     yOldT = yTrue[:,:oldClasses]
-    yNewP = yPred[:,oldClasses-1:]
-    yNewT = yTrue[:,oldClasses-1:]
+    yNewP = yPred[:,newClasses:]
+    yNewT = yTrue[:,newClasses:]
+        
+    print(yNewP)
+    print(yOldP)
+    yop = yOldP
+    yot = yOldT
+    ynp = yNewP
+    ynt = yNewT
         
     n1 = float(yOldP.get_shape().as_list()[1])
     n2 = float(yNewP.get_shape().as_list()[1])
-        
+            
     pOld = n1/(n1+n2)
     pNew = n2/(n1+n2)
-        
+            
     yOldP = (yOldP * yNewP) / yNewP
     m1 = K.mean(yOldP)
     s1 = K.std(yOldP)
     like1 = (1./(np.sqrt(2.*3.1415)*s1))*K.exp(-0.5*((yOldP-m1)**2./(s1**2.)))
-        
-    # evidence is optional
-    yOldNewP = like1 * pOld 
+            
+    yOldNewP = like1 * pOld  
     
-    yOldP = yPred[:,:oldClasses-1]
-    yOldT = yTrue[:,:oldClasses-1]
-    yNewP = yPred[:,oldClasses:]
-    yNewT = yTrue[:,oldClasses:]
-    yNewP = (yOldP * yNewP) / yOldP 
-    m2 = K.mean(yNewP)
-    s2 = K.std(yNewP)       
-    like2 = (1./(np.sqrt(2.*3.1415)*s2))*K.exp(-0.5*((yNewP-m2)**2./(s2**2.)))
-    
-    yNewP = like2 * pNew 
-    
-    return K.categorical_crossentropy(yOldT,yOldNewP) + K.categorical_crossentropy(yNewT,yNewP)
+    return K.mean(K.categorical_crossentropy(yOldT,yOldNewP))
     
 def continualLearningLoss(yTrue,yPred, iteration, oldClasses,temperature):
     a = 0.25
@@ -67,12 +62,18 @@ def continualLearningLoss(yTrue,yPred, iteration, oldClasses,temperature):
     if iteration == 0:
         return K.categorical_crossentropy(yTrue,yPred,from_logits=True)
     else:
-        yOldP = yPred[:,:oldClasses]/temperature
-        yOldT = yTrue[:,:oldClasses]
-        yNewP = yPred[:,oldClasses:]/temperature
-        yNewT = yTrue[:,oldClasses:]
+        newClasses = 1
+        if iteration == adaptationIteration:
+            newClasses = 2
+        total = oldClasses
+        oldClasses = oldClasses - newClasses    
         
-        return (a * K.categorical_crossentropy(yNewT,yNewP)) + (b * mutualDistillationLoss(yTrue, yPred, oldClasses)) + (c * keras.losses.kullback_leibler_divergence(yNewT,yNewP))
+        yOldP = yPred[:,:oldClasses]/ temperature
+        yOldT = yTrue[:,:oldClasses]
+        yNewP = yPred[:,newClasses:]/ temperature
+        yNewT = yTrue[:,newClasses:]
+        
+        return (a * K.categorical_crossentropy(yOldP,yOldT)) + (b * mutualDistillationLoss(yTrue, yPred, oldClasses, newClasses)) + (c * keras.losses.kullback_leibler_divergence(yNewT,yNewP))
         
 if doTraining == True:
     c = 0 # classes to add
@@ -102,7 +103,7 @@ if doTraining == True:
         train_generator=train_datagen.flow_from_directory(trainingPath, 
                                                          target_size=(224,224),
                                                          color_mode='rgb',
-                                                         batch_size=32,
+                                                         batch_size=8,
                                                          class_mode='categorical',
                                                          shuffle=True)
 
@@ -113,8 +114,7 @@ if doTraining == True:
 
         step_size_train=train_generator.n//train_generator.batch_size
         fit_history = model.fit_generator(generator=train_generator,
-                           steps_per_epoch=step_size_train,
-                           epochs=20)
+                           steps_per_epoch=step_size_train, epochs=20)
 
         
         model.save("model" + str(i + 1) + ".h5")
