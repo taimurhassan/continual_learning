@@ -3,7 +3,7 @@
 ## Introduction
 This repository contains an implementation of the continual learning loss function (driven via Bayesian inference) to penalize the deep classification networks for incrementally learning the diverse ranging classification tasks across various domain shifts.
 
-![CL](/images/BD2.png)
+![CL](/images/BD3.png)
 
 ## Installation
 To run the codebase, please download and install Anaconda (also install MATLAB R2020a with deep learning, image processing and computer vision toolboxes). Afterward, please import the ‘environment.yml’ or alternatively install following packages: 
