@@ -21,8 +21,8 @@ from keras.applications.vgg16 import VGG16
 from keras import optimizers
 import keras.backend as K
 
-numClasses = 2
-class_names = ['normal','pneumonia']
+numClasses = 5
+class_names = ['normal','DME','CNV','DRUSEN','CSR']
     
 model=load_model("model2.h5",custom_objects = {'<lambda>': lambda y_true, y_pred: y_pred})
 
