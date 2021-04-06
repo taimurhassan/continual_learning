@@ -14,6 +14,7 @@ To run the codebase, please download and install Anaconda (also install MATLAB R
 5. Imgaug 0.2.9 or above 
 6. Tqdm 
 7. Pandas
+8. Pillow 8.2.0
 
 Both Linux and Windows OS are supported.
 
