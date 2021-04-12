@@ -28,7 +28,7 @@ The datasets used in the paper can be downloaded from the following URLs:
 5. [Duke-II](http://people.duke.edu/~sf59/Chiu_BOE_2014_dataset.htm)
 6. [Duke-III](http://people.duke.edu/~sf59/Srinivasan_BOE_2014_dataset.htm)
 
-The datasets description file is also uploaded here. Moreover, please follow the same steps as mentioned below to prepare the training and testing data. These steps are also applicable for any custom dataset.
+The datasets description file is also uploaded here. Moreover, please follow the same steps as mentioned below to prepare the training and testing data. These steps are also applicable for any custom dataset. Please note that in this research, the disease severity within the scans of all the above-mentioned datasets are marked by multiple expert ophthalmologists. We will share those annotations here soon.
 
 ## Dataset Preparation
 
