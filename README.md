@@ -1,4 +1,4 @@
-# Cross-Domain Adaptation for Robust Retinopathy Screening via Bayesian Incremental Learning
+# Incremental Cross-Domain Adaptation for Robust Retinopathy Screening via Bayesian Deep Learning
 
 ## Introduction
 This repository contains an implementation of the continual learning loss function (driven via Bayesian inference) to penalize the deep classification networks for incrementally learning the diverse ranging classification tasks across various domain shifts.
@@ -72,9 +72,9 @@ If you use the proposed scheme (or any part of this code in your research), plea
 
 ```
 @inproceedings{BayesianIDA,
-  title   = {Cross-Domain Adaptation for Robust Retinopathy Screening via Bayesian Incremental Learning},
+  title   = {Incremental Cross-Domain Adaptation for Robust Retinopathy Screening via Bayesian Deep Learning},
   author  = {Taimur Hassan and Bilal Hassan and Muhammad Usman Akram and Shahrukh Hashmi and Abdul Hakeem and Naoufel Werghi},
-  note = {Submitted in IEEE Journal of Biomedical and Health Informatics},
+  note = {Submitted in IEEE Transactions on Instrumentation and Measurement},
   year = {2021}
 }
 ```
