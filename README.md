@@ -1,7 +1,7 @@
 # Incremental Cross-Domain Adaptation for Robust Retinopathy Screening via Bayesian Deep Learning
 
 ## Updates (August 15th, 2021)
-Blind Testing Dataset has been released. Please see the 'Datasets' section below.
+[Blind Testing Dataset](https://drive.google.com/file/d/13wFqJ2-uC2CAOqv1rg9fJJcyBD1wJT6w/view?usp=sharing) has been released.
 
 ## Introduction
 This repository contains an implementation of the continual learning loss function (driven via Bayesian inference) to penalize the deep classification networks for incrementally learning the diverse ranging classification tasks across various domain shifts.
