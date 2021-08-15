@@ -27,6 +27,7 @@ The datasets used in the paper can be downloaded from the following URLs:
 4. [Duke-I](http://people.duke.edu/~sf59/RPEDC_Ophth_2013_dataset.htm)
 5. [Duke-II](http://people.duke.edu/~sf59/Chiu_BOE_2014_dataset.htm)
 6. [Duke-III](http://people.duke.edu/~sf59/Srinivasan_BOE_2014_dataset.htm)
+7. [**Blind Testing Dataset**](https://drive.google.com/file/d/13wFqJ2-uC2CAOqv1rg9fJJcyBD1wJT6w/view?usp=sharing)
 
 The datasets description file is also uploaded here. Moreover, please follow the same steps as mentioned below to prepare the training and testing data. These steps are also applicable for any custom dataset. Please note that in this research, the disease severity within the scans of all the above-mentioned datasets are marked by multiple expert ophthalmologists. These annotations are also released publicly in this repository.
 
