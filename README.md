@@ -1,7 +1,7 @@
 # Incremental Cross-Domain Adaptation for Robust Retinopathy Screening via Bayesian Deep Learning
 
 ## Update (September 18th, 2021)
-A supporting document describing the difference between transfer learning, incremental learning, domain adaptation, and the proposed incremental cross-domain adaptation approach has been uploaded in this repository.
+A [supporting document](https://github.com/taimurhassan/continual_learning/blob/main/Supporting_Document.pdf) describing the difference between transfer learning, incremental learning, domain adaptation, and the proposed incremental cross-domain adaptation approach has been uploaded in this repository.
 
 ## Update (August 15th, 2021)
 [Blind Testing Dataset](https://drive.google.com/file/d/13wFqJ2-uC2CAOqv1rg9fJJcyBD1wJT6w/view?usp=sharing) has been released.
