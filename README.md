@@ -81,7 +81,7 @@ If you use the proposed scheme (or any part of this code in your research), plea
 @inproceedings{BayesianIDA,
   title   = {Incremental Cross-Domain Adaptation for Robust Retinopathy Screening via Bayesian Deep Learning},
   author  = {Taimur Hassan and Bilal Hassan and Muhammad Usman Akram and Shahrukh Hashmi and Abdul Hakeem and Naoufel Werghi},
-  note = {Submitted in IEEE Transactions on Instrumentation and Measurement},
+  note = {IEEE Transactions on Instrumentation and Measurement},
   year = {2021}
 }
 ```
