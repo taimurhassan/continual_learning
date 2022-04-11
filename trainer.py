@@ -73,7 +73,7 @@ def continualLearningLoss(yTrue,yPred, iteration, oldClasses,temperature):
         yNewP = yPred[:,newClasses:]/ temperature
         yNewT = yTrue[:,newClasses:]
         
-        return (a * K.categorical_crossentropy(yOldP,yOldT)) + (b * mutualDistillationLoss(yTrue, yPred, oldClasses, newClasses)) + (c * keras.losses.kullback_leibler_divergence(yNewT,yNewP))
+        return (a * K.categorical_crossentropy(yOldP,yOldT,from_logits=True)) + (b * mutualDistillationLoss(yTrue, yPred, oldClasses, newClasses)) + (c * keras.losses.kullback_leibler_divergence(yNewT,yNewP,from_logits=True))
         
 if doTraining == True:
     c = 0 # classes to add
